@@ -1,0 +1,123 @@
+:root {
+  --border-size: 3px;
+  --border-radius: 5px;
+  --primary-color: black;
+  --secondary-color: orangered;
+  --background-color: white;
+  --font-color: black;
+  --border-color: black;
+}
+
+a, h1, label {
+  user-select: none;
+}
+
+body {
+  text-align: center;
+}
+
+.login-error {
+
+}
+	
+
+.registration-container, .login-container {
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: var(--border-size) solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+.registration-title, .login-title {
+  margin: 0 0 10px 0;
+  text-align: center;
+  color: var(--font-color);
+  border-bottom: var(--border-size) solid var(--border-color);
+}
+
+.registration-form, .login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.registration-div, .login-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.registration-label, .login-label {
+  font-size: 20px;
+  width: 260px;
+  text-align: left;
+  color: var(--font-color);
+}
+
+.registration-input, .login-input {
+  min-width: 250px;
+  min-height: 25px; 
+  background-color: var(--background-color);
+  color: var(--font-color);
+  border: var(--border-size) solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+.registration-button-container,.login-button-container {
+  width: 260px;
+  height: auto;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  vertical-align: center;
+}
+
+.registration-error-message {
+  width: 240px;
+  margin: 0;
+  padding: 2px;
+  color: var(--font-color);
+  background-color: var(--background-color);
+  border: var(--border-size) solid var(--border-color);
+  border-top: none;
+}
+
+.registration-button,
+.login-button,
+.registration-link,
+.login-link
+{
+  width: 100px;
+  height: 40px;
+  background-color: var(--background-color);
+  font-size: 18px;
+  border: var(--border-size) solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--font-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  cursor: default;
+}
+
+.registration-link, .login-link {
+  width: 100px;
+  height: 34px;
+}
+
+.registration-button:hover,
+.registration-link:hover,
+.login-button:hover,
+.login-link:hover {
+  background-color: var(--secondary-color);
+}
+
+
+.main-container {}
+
+.main-title {}
