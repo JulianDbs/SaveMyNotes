@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Registration</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+	</head>
+	<body>
+		<main class="registration-container">
+			<h1 th:text="${'Registration'}" class="registration-title"></h1>
+			<form th:action="@{/registration}" th:object="${registryForm}" method="POST" enctype="utf8" class="registration-form">
+				<div class="registration-div">
+					<label th:text="${'Username : '}" class="registration-label"></label>
+					<input type="text" th:field="*{username}" class="registration-input"/>
+					<p th:each="error : ${#fields.errors('username')}" th:text="${error}" class="registration-error-message">Validation Error</p>
+				</div>
+				<div class="registration-div">
+					<label th:text="${'Email : '}" class="registration-label"></label>
+					<input type="email" th:field="*{email}" class="registration-input"/>
+					<p th:each="error : ${#fields.errors('email')}" th:text="${error}" class="registration-error-message">Validation Error</p>
+				</div>
+				<div class="registration-div">
+					<label th:text="${'Password : '}" class="registration-label"></label>
+					<input type="password" th:field="*{password}" class="registration-input"/>
+					<p th:each="error : ${#fields.errors('password')}" th:text="${error}" class="registration-error-message">Validation Error</p>
+				</div>
+				<div class="registration-div">
+					<label th:text="${'Confirm Password : '}" class="registration-label"></label>
+					<input type="password" th:field="*{matchingPassword}" class="registration-input"/>
+					<p th:each="error : ${#fields.errors('matchingPassword')}" th:text="${error}" class="registration-error-message">Validation Error</p>
+				</div>
+				<div class="registration-button-container">
+					<a th:href="@{/login}" th:text="${'Sign-In'}" class="registration-link"></a>
+					<button type="submit" th:text="Create" class="registration-button"></button>
+				</div>
+			</form>
+		</main>
+	</body>
+</html>
