@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">      
+                <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+	</head>
+	<body>
+		<main class="login-container">
+			<h1 class="login-title">Login</h1>
+
+			<div th:if="${param.error}" class="login-error">
+				Invalid username and password
+			</div>
+			<form th:action="@{/login}" method="post" class="login-form">
+				<div class="login-div">
+					<label th:text="${'User Name : '}" class="login-label"></label> 
+					<input type="type" name="username" class="login-input"/>
+				</div>
+				<div class="login-div">
+					<label th:text="${'Password : '}" class="login-label"></label> 
+					<input type="password" name="password" class="login-input"/>
+				</div>
+				<div class="login-button-container">
+					<button type="submit"  th:text="${'Login'}" class="login-button"></button>
+					<a th:href="@{/registration}" th:text="${'Sign-Up'}" class="login-link"></a>
+				</div>
+			</form>
+		</main>
+	</body>
+</html>
