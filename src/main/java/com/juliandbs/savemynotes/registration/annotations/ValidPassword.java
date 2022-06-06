@@ -20,7 +20,7 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 public @interface ValidPassword {
 
-	String message() default "Null or Empty Email";
+	String message() default "Null or Empty Password";
 
 	Class<?>[] groups() default {};
 
