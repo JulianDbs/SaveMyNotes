@@ -3,6 +3,7 @@ package com.juliandbs.savemynotes.registration.dto;
 import com.juliandbs.savemynotes.registration.annotations.ValidUsername;
 import com.juliandbs.savemynotes.registration.annotations.ValidUsernameCharacters;
 import com.juliandbs.savemynotes.registration.annotations.ValidEmail;
+import com.juliandbs.savemynotes.registration.annotations.ValidEmailPattern;
 import com.juliandbs.savemynotes.registration.annotations.PasswordMatches;
 
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ public class UserDto {
 	private String username;
 
 	@ValidEmail
+	@ValidEmailPattern
 	private String email;
 
 	@NotNull
