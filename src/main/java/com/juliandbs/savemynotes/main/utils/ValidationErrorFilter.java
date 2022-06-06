@@ -8,6 +8,7 @@ import com.juliandbs.savemynotes.registration.annotations.ValidEmailPattern;
 import com.juliandbs.savemynotes.registration.annotations.PasswordMatches;
 import com.juliandbs.savemynotes.registration.annotations.ValidPassword;
 import com.juliandbs.savemynotes.registration.annotations.ValidPasswordSize;
+import com.juliandbs.savemynotes.registration.annotations.ValidMatchingPassword;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -24,6 +25,7 @@ public class ValidationErrorFilter {
 	private static List<String> usernameClassList = new LinkedList<>();
 	private static List<String> emailClassList = new LinkedList<>();
 	private static List<String> passwordClassList = new LinkedList<>();
+	private static List<String> matchingPasswordClassList = new LinkedList<>();
 	static {
 		usernameClassList.add(ValidUsername.class.getSimpleName());
 		usernameClassList.add(ValidUsernameCharacters.class.getSimpleName());
@@ -33,6 +35,8 @@ public class ValidationErrorFilter {
 		passwordClassList.add(PasswordMatches.class.getSimpleName());
 		passwordClassList.add(ValidPassword.class.getSimpleName());
 		passwordClassList.add(ValidPasswordSize.class.getSimpleName());
+		matchingPasswordClassList.add(PasswordMatches.class.getSimpleName());
+		matchingPasswordClassList.add(ValidMatchingPassword.class.getSimpleName());
 	}
 
 	public List<String> getUsernameErrors(Errors errors) throws NullPointerException {
@@ -51,6 +55,12 @@ public class ValidationErrorFilter {
 		if (errors == null)
 			throw new NullPointerException();
 		return filterList(errors, passwordClassList);
+	}
+
+	public List<String> getMatchingPasswordErrors(Errors errors) throws NullPointerException {
+		if (errors == null)
+			throw new NullPointerException();
+		return filterList(errors, matchingPasswordClassList);
 	}
 
 	private List<String> filterList(Errors errors, List<String> classList) {
