@@ -2,6 +2,9 @@ package com.juliandbs.savemynotes.main.utils;
 
 import com.juliandbs.savemynotes.registration.annotations.ValidUsername;
 import com.juliandbs.savemynotes.registration.annotations.ValidUsernameCharacters;
+import com.juliandbs.savemynotes.registration.annotations.ValidUsernameSize;
+import com.juliandbs.savemynotes.registration.annotations.ValidEmail;
+import com.juliandbs.savemynotes.registration.annotations.ValidEmailPattern;
 import com.juliandbs.savemynotes.registration.annotations.PasswordMatches;
 
 import org.springframework.stereotype.Component;
@@ -22,6 +25,9 @@ public class ValidationErrorFilter {
 	static {
 		usernameClassList.add(ValidUsername.class.getSimpleName());
 		usernameClassList.add(ValidUsernameCharacters.class.getSimpleName());
+		usernameClassList.add(ValidUsernameSize.class.getSimpleName());
+		emailClassList.add(ValidEmail.class.getSimpleName());
+		emailClassList.add(ValidEmailPattern.class.getSimpleName());
 		passwordClassList.add(PasswordMatches.class.getSimpleName());
 	}
 
