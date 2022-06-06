@@ -12,26 +12,21 @@
 				<div class="registration-div">
 					<label th:text="${'Username : '}" class="registration-label"></label>
 					<input type="text" th:field="*{username}" class="registration-input"/>
-					<!--<p th:each="error : ${#fields.errors('username')}" th:text="${error}" class="registration-error-message">Validation Error</p>-->
 					<p th:each="error : ${usernameErrors}" th:text="${error}" class="registration-error-message">ValidationError</p>
 				</div>
 				<div class="registration-div">
 					<label th:text="${'Email : '}" class="registration-label"></label>
 					<input type="text" th:field="*{email}" name="email" value="" class="registration-input"/>
-					<p th:each="error : ${#fields.errors('email')}" th:text="${error}" class="registration-error-message">Validation Error</p>
 					<p th:each="error : ${emailErrors}" th:text="${error}" class="registration-error-message">ValidationError</p>
 				</div>
 				<div class="registration-div">
 					<label th:text="${'Password : '}" class="registration-label"></label>
 					<input type="password" th:field="*{password}" class="registration-input"/>
-					<!--<p th:each="error : ${#fields.errors('password')}" th:text="${error}" class="registration-error-message">Validation Error</p>-->
-					<p th:each="error : ${#fields.errors('password')}" th:text="${error}" class="registration-error-message">Validation Error</p>
 					<p th:each="error : ${passwordErrors}" th:text="${error}" class="registration-error-message">Validation Error</p>
 				</div>
 				<div class="registration-div">
 					<label th:text="${'Confirm Password : '}" class="registration-label"></label>
 					<input type="password" th:field="*{matchingPassword}" class="registration-input"/>
-					<p th:each="error : ${#fields.errors('matchingPassword')}" th:text="${error}" class="registration-error-message">Validation Error</p>
 					<p th:each="error : ${passwordErrors}" th:text="${error}" class="registration-error-message">Validation Error</p>
 				</div>
 				<div class="registration-button-container">
