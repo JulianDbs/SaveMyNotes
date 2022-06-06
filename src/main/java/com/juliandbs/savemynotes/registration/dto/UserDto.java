@@ -2,6 +2,7 @@ package com.juliandbs.savemynotes.registration.dto;
 
 import com.juliandbs.savemynotes.registration.annotations.ValidUsername;
 import com.juliandbs.savemynotes.registration.annotations.ValidUsernameCharacters;
+import com.juliandbs.savemynotes.registration.annotations.ValidUsernameSize;
 import com.juliandbs.savemynotes.registration.annotations.ValidEmail;
 import com.juliandbs.savemynotes.registration.annotations.ValidEmailPattern;
 import com.juliandbs.savemynotes.registration.annotations.PasswordMatches;
@@ -18,7 +19,7 @@ public class UserDto {
 
 	@ValidUsername
 	@ValidUsernameCharacters
-	@Size(message="Username length must be greater than 4 and less than 20", min=4, max=21)
+	@ValidUsernameSize
 	private String username;
 
 	@ValidEmail
