@@ -8,6 +8,7 @@ import com.juliandbs.savemynotes.registration.annotations.ValidEmailPattern;
 import com.juliandbs.savemynotes.registration.annotations.PasswordMatches;
 import com.juliandbs.savemynotes.registration.annotations.ValidPassword;
 import com.juliandbs.savemynotes.registration.annotations.ValidPasswordSize;
+import com.juliandbs.savemynotes.registration.annotations.ValidMatchingPassword;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotEmpty;
@@ -32,10 +33,7 @@ public class UserDto {
 	@ValidPasswordSize
 	private String password;
 
-	@NotNull
-	@Size(message="Password length must be greater than 4 and less than 20", min=5, max=21)
-	@NotEmpty(message="Password field is empty")
-
+	@ValidMatchingPassword
 	private String matchingPassword;
 
 	public String getUsername() {return username;}
