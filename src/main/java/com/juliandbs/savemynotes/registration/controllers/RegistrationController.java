@@ -40,6 +40,7 @@ public class RegistrationController {
 			model.addAttribute("usernameErrors", validationErrorFilter.getUsernameErrors(errors));
 			model.addAttribute("emailErrors", validationErrorFilter.getEmailErrors(errors));
 			model.addAttribute("passwordErrors", validationErrorFilter.getPasswordErrors(errors));
+			model.addAttribute("matchingPasswordErrors", validationErrorFilter.getMatchingPasswordErrors(errors));
 		}
 		return toUrl;
 	}
