@@ -17,7 +17,7 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 public @interface ValidUsername {
 
-	String message() default "Invalid Username";
+	String message() default "Null or Empty Username";
 
 	Class<?>[] groups() default {};
 
