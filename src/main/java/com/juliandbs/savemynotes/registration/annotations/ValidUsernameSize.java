@@ -20,7 +20,7 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 public @interface ValidUsernameSize {
 
-	String message() default "Username length must be greater than 3 and greater or less than 21";
+	String message() default "Username length must be greater than 3 and less than 21";
 
 	Class<?>[] groups() default {};
 
