@@ -27,7 +27,7 @@
 				<div class="registration-div">
 					<label th:text="${'Confirm Password : '}" class="registration-label"></label>
 					<input type="password" th:field="*{matchingPassword}" class="registration-input"/>
-					<p th:each="error : ${passwordErrors}" th:text="${error}" class="registration-error-message">Validation Error</p>
+					<p th:each="error : ${matchingPasswordErrors}" th:text="${error}" class="registration-error-message">Validation Error</p>
 				</div>
 				<div class="registration-button-container">
 					<a th:href="@{/login}" th:text="${'Sign-In'}" class="registration-link"></a>
