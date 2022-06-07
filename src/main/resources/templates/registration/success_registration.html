@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Success Registration</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+	</head>
+	<body>
+		<main class="registration-container">
+			<h1 class="registration-title">Success Registration</h1>
+			<div class="registration-messages-panel">
+				<p th:text="${'Hi ' + name}" class="registration-message"></p>
+				<p th:text="${'Your account was successfully created'}" class="registration-message"></p>
+				<p th:text="${'Press the Sign In button to continue'}" class="registration-message"></p>
+				<a th:href="@{/login}" class="registration-link">Sign In</a>
+			</div>
+		</main>
+	</body>
+</html>
