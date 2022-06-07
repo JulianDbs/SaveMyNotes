@@ -9,6 +9,7 @@ import com.juliandbs.savemynotes.registration.annotations.PasswordMatches;
 import com.juliandbs.savemynotes.registration.annotations.ValidPassword;
 import com.juliandbs.savemynotes.registration.annotations.ValidPasswordSize;
 import com.juliandbs.savemynotes.registration.annotations.ValidMatchingPassword;
+import com.juliandbs.savemynotes.registration.annotations.ValidMatchingPasswordSize;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotEmpty;
@@ -34,6 +35,7 @@ public class UserDto {
 	private String password;
 
 	@ValidMatchingPassword
+	@ValidMatchingPasswordSize
 	private String matchingPassword;
 
 	public String getUsername() {return username;}
