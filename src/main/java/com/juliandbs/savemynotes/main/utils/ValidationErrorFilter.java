@@ -9,6 +9,7 @@ import com.juliandbs.savemynotes.registration.annotations.PasswordMatches;
 import com.juliandbs.savemynotes.registration.annotations.ValidPassword;
 import com.juliandbs.savemynotes.registration.annotations.ValidPasswordSize;
 import com.juliandbs.savemynotes.registration.annotations.ValidMatchingPassword;
+import com.juliandbs.savemynotes.registration.annotations.ValidMatchingPasswordSize;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -37,6 +38,7 @@ public class ValidationErrorFilter {
 		passwordClassList.add(ValidPasswordSize.class.getSimpleName());
 		matchingPasswordClassList.add(PasswordMatches.class.getSimpleName());
 		matchingPasswordClassList.add(ValidMatchingPassword.class.getSimpleName());
+		matchingPasswordClassList.add(ValidMatchingPasswordSize.class.getSimpleName());
 	}
 
 	public List<String> getUsernameErrors(Errors errors) throws NullPointerException {
