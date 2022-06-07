@@ -41,6 +41,9 @@ public class RegistrationController {
 			model.addAttribute("emailErrors", validationErrorFilter.getEmailErrors(errors));
 			model.addAttribute("passwordErrors", validationErrorFilter.getPasswordErrors(errors));
 			model.addAttribute("matchingPasswordErrors", validationErrorFilter.getMatchingPasswordErrors(errors));
+		} else {
+			model.addAttribute("name", user.getUsername());
+			toUrl="registration/success_registration";
 		}
 		return toUrl;
 	}
