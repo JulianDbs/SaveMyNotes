@@ -22,7 +22,7 @@ public class RegistrationController {
         public String getRegistration(Model model) {
 		UserDto user = new UserDto();
                 model.addAttribute("user", user);
-                return "registry/registry";
+                return "registration/registration";
         }
 
 	@PostMapping("/registration")
@@ -36,7 +36,7 @@ public class RegistrationController {
 		System.out.println("Acount : (" + user.toString() + ")");
 		String toUrl = "login/login";
 		if (errors.hasErrors()) {
-			toUrl = "registry/registry";
+			toUrl = "registration/registration";
 			model.addAttribute("usernameErrors", validationErrorFilter.getUsernameErrors(errors));
 			model.addAttribute("emailErrors", validationErrorFilter.getEmailErrors(errors));
 			model.addAttribute("passwordErrors", validationErrorFilter.getPasswordErrors(errors));
