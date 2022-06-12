@@ -34,6 +34,15 @@ public class User {
 		this.password = password;
 	}
 
+	public User(Long id, String username, String email, String password) throws NullPointerException {
+		if (id == null || username == null || email == null || password == null)
+			throw new NullPointerException("Null User Class Parameter/s");
+		this.id = id;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	}
+
 	public Long getId() {return id;}
 
 	public void setId(Long id) {this.id = id;}
