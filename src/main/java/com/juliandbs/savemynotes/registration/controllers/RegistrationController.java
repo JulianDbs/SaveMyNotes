@@ -1,7 +1,9 @@
 package com.juliandbs.savemynotes.registration.controllers;
 
+import com.juliandbs.savemynotes.persistence.services.UserServiceImpl;
 import com.juliandbs.savemynotes.registration.dto.UserDto;
-import com.juliandbs.savemynotes.main.utils.ValidationErrorFilter;
+//import com.juliandbs.savemynotes.main.utils.ValidationErrorFilter;
+import com.juliandbs.savemynotes.main.utils.CustomResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +17,11 @@ import javax.validation.Valid;
 @Controller
 public class RegistrationController {
 
+	//@Autowired
+	//private ValidationErrorFilter validationErrorFilter;
+
 	@Autowired
-	private ValidationErrorFilter validationErrorFilter;
+	UserServiceImpl userService;
 
 	@GetMapping("/registration")
         public String getRegistration(Model model) {
@@ -34,6 +39,7 @@ public class RegistrationController {
 			Model model
 	){
 		System.out.println("Acount : (" + user.toString() + ")");
+		/*
 		String toUrl = "login/login";
 		if (errors.hasErrors()) {
 			toUrl = "registration/registration";
@@ -45,6 +51,9 @@ public class RegistrationController {
 			model.addAttribute("name", user.getUsername());
 			toUrl="registration/success_registration";
 		}
-		return toUrl;
+		*/
+		CustomResponse customResponse = userService.createNewUser(model, errors, user);
+		model = customResponse.getModel();
+		return customResponse.getUrl();
 	}
 }
