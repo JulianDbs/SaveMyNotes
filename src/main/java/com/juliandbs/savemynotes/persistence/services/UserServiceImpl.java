@@ -9,6 +9,10 @@ import com.juliandbs.savemynotes.persistence.exceptions.UserAlreadyExistsExcepti
 import com.juliandbs.savemynotes.persistence.exceptions.PasswordNotValidException;
 import com.juliandbs.savemynotes.main.utils.ValidationErrorFilter;
 import com.juliandbs.savemynotes.main.utils.CustomResponse;
+import com.juliandbs.savemynotes.persistence.repositories.UserInfoRepository;
+import com.juliandbs.savemynotes.persistence.models.UserInfo;
+import com.juliandbs.savemynotes.persistence.exceptions.UserInfoNotFoundException;
+import com.juliandbs.savemynotes.persistence.exceptions.UserInfoAlreadyExistsException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +37,9 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 
 	@Autowired
+	UserInfoRepository userInfoRepository;
+
+	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	//Create
@@ -51,11 +58,14 @@ public class UserServiceImpl implements UserService {
 					newUser.getEmail(),
 					bCryptPasswordEncoder.encode(newUser.getPassword())
 			);
+			UserInfo userInfo = new UserInfo(newUser.getEmail(), Long.valueOf(0));
 			try {
 				userRepository.addNewUser(user);
+				//userInfoRepository.addNewUserInfo(userInfo);
+				userInfoRepository.addNewUserInfo(newUser.getEmail(), Long.valueOf(0));
 	                        model.addAttribute("name", user.getUsername());
 	                        toUrl="registration/success_registration";
-			} catch (UserAlreadyExistsException e) {
+			} catch (UserAlreadyExistsException | UserInfoAlreadyExistsException e) {
 				List<String> errorList = new LinkedList<>();
 				errorList.add("User Already Exists");
 				model.addAttribute("emailErrors", errorList);
