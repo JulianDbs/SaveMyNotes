@@ -1,29 +1,45 @@
 package com.juliandbs.savemynotes.configs;
 
+import com.juliandbs.savemynotes.security.CustomUserDetailsService;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	private CustomUserDetailsService userDetailsService;
 
 	@Bean
         public BCryptPasswordEncoder bCryptPasswordEncoder() {
                 return new BCryptPasswordEncoder();
         }
 
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(userDetailsService);
+		authProvider.setPasswordEncoder(bCryptPasswordEncoder());
+		return authProvider;
+	}
 
 	@Override
-	public void configure(HttpSecurity http) throws Exception {
+	protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+	}
+
+
+	@Override
+	protected void configure(final HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
 				.antMatchers("/styles/style.css", "/registration").permitAll()
@@ -32,21 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginPage("/login")
 				.permitAll()
+				.usernameParameter("email")
 				.and()
 			.logout()
 				//.logoutUrl("/logout")
 				.permitAll();
-	}
-
-	@Bean
-	@Override
-	public UserDetailsService userDetailsService() {
-		UserDetails user =
-		User.withDefaultPasswordEncoder()
-			.username("user")
-			.password("password")
-			.roles("USER")
-			.build();
-		return new InMemoryUserDetailsManager(user);
 	}
 }
