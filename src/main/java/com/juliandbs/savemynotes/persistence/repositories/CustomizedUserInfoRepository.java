@@ -19,11 +19,6 @@ public interface CustomizedUserInfoRepository {
 	//create
 	public void addNewUserInfo(UserInfo userInfo) throws NullPointerException, UserInfoAlreadyExistsException;
 
-	@Modifying(clearAutomatically = true, flushAutomatically = true)
-	@Transactional
-	@Query(nativeQuery = true, value = "INSERT INTO user_info (email, note_count) VALUES (:email, :note_count)")
-	public void createNewUserInfo(@Param("email") String email, @Param("note_count") Long note_count);
-
 	//read
 	@Query(nativeQuery = true, value = "SELECT * FROM user_info WHERE user_info.email=:email")
 	public Optional<UserInfo> findUserInfoByEmail(@Param("email") String email);
@@ -52,4 +47,5 @@ public interface CustomizedUserInfoRepository {
 	@Transactional
 	@Query(nativeQuery = true, value = "DELETE FROM user_info WHERE user_info.email=:email")
 	public void deleteUserInfoByEmail(@Param("email") String email);
+
 }
