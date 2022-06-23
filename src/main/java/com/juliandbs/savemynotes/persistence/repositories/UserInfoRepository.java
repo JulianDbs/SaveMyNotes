@@ -14,7 +14,6 @@ import java.util.Optional;
 @Repository
 public interface UserInfoRepository extends JpaRepository<UserInfo, Long>, CustomizedUserInfoRepository {
 
-
 	@Override
 	public default void addNewUserInfo(UserInfo userInfo) throws NullPointerException, UserInfoAlreadyExistsException {
 		if (userInfo == null)
@@ -27,17 +26,9 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long>, Custo
 		this.flush();
 	}
 
-	public default void addNewUserInfo(String email, Long note_count) throws NullPointerException, UserInfoAlreadyExistsException {
-		if (email == null || note_count == null)
+	public default UserInfo getUserInfoByEmail(String email) throws NullPointerException, UserInfoNotFoundException {
+		if (email == null)
 			throw new NullPointerException();
-		try {
-			this.createNewUserInfo(email, note_count);
-		} catch (DataIntegrityViolationException e) {
-			throw new UserInfoAlreadyExistsException();
-		}
-	}
-
-	public default UserInfo getUserInfoByEmail(String email) throws UserInfoNotFoundException {
 		Optional<UserInfo> result = this.findUserInfoByEmail(email);
 		if (!result.isPresent())
 			throw new UserInfoNotFoundException();
