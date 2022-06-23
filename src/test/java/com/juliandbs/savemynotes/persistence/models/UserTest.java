@@ -12,12 +12,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("unitary")
-@DisplayName("User Model Test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserTest {
 
 	@Nested
-	@DisplayName("Empty Constructor Test")
+	@DisplayName("User Model | Empty Constructor Test")
 	public class EmptyConstructorTest {
 
 		public User user = new User();
@@ -52,9 +51,9 @@ public class UserTest {
 	}
 
 	@Nested
-	@DisplayName("Constructor With 3 Parameters Test")
+	@DisplayName("User Model | Constructor With 3 Parameters Test")
 	public class ConstructorWith3ParametersTest {
- 
+
 		@Test
                 @Order(1)
                 @DisplayName("Does Not Throw Test")
@@ -102,7 +101,7 @@ public class UserTest {
 	}
 
 	@Nested
-	@DisplayName("Constructor With 4 Parameters Test")
+	@DisplayName("User Model | Constructor With 4 Parameters Test")
 	public class ConstructorWith4ParametersTest {
 
 		@Test
