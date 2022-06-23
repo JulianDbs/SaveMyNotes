@@ -34,7 +34,6 @@ import java.util.Optional;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SavemynotesApplication.class)
 @ActiveProfiles("tc")
-@DisplayName("User Repository | Live Integration Test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserRepositoryTCIntegrationTest {
 
@@ -46,7 +45,7 @@ public class UserRepositoryTCIntegrationTest {
 
 
 	@Nested
-	@DisplayName("addNewUser() Method Test")
+	@DisplayName("User Repository | addNewUser() Method Test")
 	public class saveNewUserMethodTest {
 
 		@BeforeEach
@@ -110,7 +109,7 @@ public class UserRepositoryTCIntegrationTest {
 	}
 
 	@Nested
-	@DisplayName("findUserByEmail() Method Test")
+	@DisplayName("User Repository | findUserByEmail() Method Test")
 	@TestInstance(Lifecycle.PER_CLASS)
 	public class findUserByEmailMethodTest {
 
@@ -151,7 +150,7 @@ public class UserRepositoryTCIntegrationTest {
 	}
 
 	@Nested
-	@DisplayName("getUserByEmail() Method Test")
+	@DisplayName("User Repository | getUserByEmail() Method Test")
 	@TestInstance(Lifecycle.PER_CLASS)
 	public class getUserByEmailMethodTest {
 		private User user = new User("jacks", "jack@jack.com", "1234565");
@@ -172,7 +171,7 @@ public class UserRepositoryTCIntegrationTest {
 	}
 
 	@Nested
-	@DisplayName("updateUsernameByEmail() Method Test")
+	@DisplayName("User Repository | updateUsernameByEmail() Method Test")
 	public class updateUsernameByEmailTest {
 
 		@BeforeEach()
@@ -231,7 +230,7 @@ public class UserRepositoryTCIntegrationTest {
 	}
 
 	@Nested
-	@DisplayName("updatePasswordByEmail() Method Test")
+	@DisplayName("User Repository | updatePasswordByEmail() Method Test")
 	public class updatePasswordByEmailTest {
 		@BeforeEach
 		public void init() {
@@ -302,7 +301,7 @@ public class UserRepositoryTCIntegrationTest {
 	}
 
 	@Nested
-	@DisplayName("removeUserByEmail() Method Test")
+	@DisplayName("User Repository | removeUserByEmail() Method Test")
 	@TestInstance(Lifecycle.PER_CLASS)
 	public class removeUserByEmailMethodTest {
 
