@@ -18,7 +18,6 @@ import java.util.LinkedList;
 import java.lang.NullPointerException;
 
 @Tag("unitary")
-@DisplayName("CustomResponse Test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CustomResponseTest {
 
@@ -41,7 +40,7 @@ public class CustomResponseTest {
 	public static final String url = "login/login";
 
 	@Nested
-	@DisplayName("Constructor With Parameters Test")
+	@DisplayName("CustomResponse | Constructor With Parameters Test")
 	public class ConstructorWithParameters {
 
 		@Test
