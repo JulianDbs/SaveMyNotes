@@ -10,7 +10,7 @@ import javax.persistence.Column;
 import java.lang.NullPointerException;
 import java.time.LocalDate;
 
-@Entity(name = "user_info")
+@Entity()
 @Table(name = "user_info")
 public class UserInfo {
 
@@ -21,31 +21,36 @@ public class UserInfo {
 	@Column(name = "email", nullable = false, length = 40, unique = true)
 	private String email;
 
-	@Column(name = "creation_date", nullable = false)
+	@Column(columnDefinition = "DATE DEFAULT CURRENT_DATE", name = "creation_date", nullable = false)
 	private LocalDate creation_date;
 
-	@Column(name = "note_count", nullable = false)
+	@Column(columnDefinition = "NUMERIC DEFAULT 0", name = "note_count", nullable = false)
 	private Long note_count;
 
-	@Column(name = "account_expired", nullable = false)
+	@Column(columnDefinition = "BOOLEAN DEFAULT false", name = "account_expired", nullable = false)
 	private Boolean account_expired;
 
-	@Column(name = "account_locked", nullable = false)
+	@Column(columnDefinition = "BOOLEAN DEFAULT false", name = "account_locked", nullable = false)
 	private Boolean account_locked;
 
-	@Column(name = "creadentials_expired", nullable = false)
+	@Column(columnDefinition = "BOOLEAN DEFAULT false", name = "creadentials_expired", nullable = false)
 	private Boolean credentials_expired;
 
-	@Column(name = "account_enabled", nullable = false)
+	@Column(columnDefinition = "BOOLEAN DEFAULT TRUE", name = "account_enabled", nullable = false)
 	private Boolean account_enabled;
 
 	public UserInfo() {}
 
-	public UserInfo(String email, Long note_count) throws NullPointerException {
-		if (email == null || note_count == null)
+	public UserInfo(String email) throws NullPointerException {
+		if (email == null)
 			throw new NullPointerException();
 		this.email = email;
-		this.note_count = note_count;
+		creation_date = LocalDate.now();
+		note_count = Long.valueOf(0);
+		account_expired = false;
+		account_locked = false;
+		credentials_expired = false;
+		account_enabled = true;
 	}
 
 	public UserInfo(
@@ -94,7 +99,7 @@ public class UserInfo {
 
 	public boolean isLocked() {return account_locked.booleanValue();}
 
-	public boolean isCredentialsExpired() {return credentials_expired;}
+	public boolean isCredentialsExpired() {return credentials_expired.booleanValue();}
 
 	public boolean isEnabled() {return account_enabled.booleanValue();}
 
