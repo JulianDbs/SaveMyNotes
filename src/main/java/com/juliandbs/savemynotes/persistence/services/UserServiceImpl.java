@@ -58,11 +58,10 @@ public class UserServiceImpl implements UserService {
 					newUser.getEmail(),
 					bCryptPasswordEncoder.encode(newUser.getPassword())
 			);
-			UserInfo userInfo = new UserInfo(newUser.getEmail(), Long.valueOf(0));
+			UserInfo userInfo = new UserInfo(newUser.getEmail());
 			try {
 				userRepository.addNewUser(user);
-				//userInfoRepository.addNewUserInfo(userInfo);
-				userInfoRepository.addNewUserInfo(newUser.getEmail(), Long.valueOf(0));
+				userInfoRepository.addNewUserInfo(userInfo);
 	                        model.addAttribute("name", user.getUsername());
 	                        toUrl="registration/success_registration";
 			} catch (UserAlreadyExistsException | UserInfoAlreadyExistsException e) {
