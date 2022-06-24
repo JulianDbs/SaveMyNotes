@@ -283,7 +283,7 @@ public class UserInfoRepositoryTCIntegrationTest {
 	}
 
 	@Nested
-	@DisplayName("UserInfoRepository | getUserInfoByEmail() Test")
+	@DisplayName("UserInfo Repository | getUserInfoByEmail() Test")
 	@TestInstance(Lifecycle.PER_CLASS)
 	public class GetUserInfoByEmailTest {
 
@@ -386,6 +386,539 @@ public class UserInfoRepositoryTCIntegrationTest {
 					() -> assertEquals(true, classUnderTest.isEnabled())
 				);
 			} catch (NullPointerException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Nested
+	@DisplayName("UserInfo Repository | updateNoteCountByEmail() Method Test")
+	@TestInstance(Lifecycle.PER_CLASS)
+	public class UpdateNoteCountByEmailMethodTest {
+
+		@BeforeAll
+		public void setup() {
+			userRepository.deleteAll();
+			userInfoRepository.deleteAll();
+			userRepository.save(new User("jack", "jack@jack.com", "123456"));
+		}
+
+		@BeforeEach
+		public void init() {
+			userInfoRepository.deleteAll();
+		}
+
+		@Test
+		@Order(1)
+		@DisplayName("Does Not Throw Test")
+		public void updateNoteCountByEmailMethodDoesNotThrowTest() {
+			//when
+			try {
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+			} catch (NullPointerException | UserInfoAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+			//then
+			assertDoesNotThrow(() -> {
+				userInfoRepository.updateNoteCountByEmail("jack@jack.com", Long.valueOf(1));
+			});
+		}
+
+		@Test
+		@Order(2)
+		@DisplayName("Throws Exactly NullPointerExcception Test")
+		public void updateNoteCountByEmailMethodThrowsExactlyNullPointerExceptionTest() {
+			assertThrowsExactly(NullPointerException.class, () -> {
+				userInfoRepository.updateNoteCountByEmail(null, null);
+			});
+		}
+
+		@Test
+		@Order(3)
+		@DisplayName("Throws Exactly UserInfoNotFoundException Test")
+		public void updateNoteCountByEmailMethodThrowsExactlyUserInfoNotFoundExceptionTest() {
+			assertThrowsExactly(UserInfoNotFoundException.class, () -> {
+				userInfoRepository.updateNoteCountByEmail("jack@jack.com", Long.valueOf(1));
+			});
+		}
+
+		@Test
+		@Order(4)
+		@DisplayName("Not Null Test")
+		public void updateNoteCountByEmailMethodNotNullTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//when
+				userInfoRepository.updateNoteCountByEmail("jack@jack.com", Long.valueOf(1));
+				UserInfo userInfo = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				//then
+				assertNotNull(userInfo.getNoteCount());
+			} catch (NullPointerException |  UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(5)
+		@DisplayName("Equals Test")
+		public void updateNoteCountByEmailMethodEqualsTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//when
+				userInfoRepository.updateNoteCountByEmail("jack@jack.com", Long.valueOf(1));
+				UserInfo userInfo = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				//then
+				assertEquals(Long.valueOf(1), userInfo.getNoteCount());
+			} catch (NullPointerException | UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Nested
+	@DisplayName("UserInfo Repository | updateAccountExpiredByEmail() Method Test")
+	@TestInstance(Lifecycle.PER_CLASS)
+	public class UpdateAccountExpiredByEmailMethodTest {
+		@BeforeAll
+		public void setup() {
+			userRepository.deleteAll();
+			userInfoRepository.deleteAll();
+			userRepository.save(new User("jack", "jack@jack.com", "123456"));
+		}
+
+		@BeforeEach
+		public void init() {
+			userInfoRepository.deleteAll();
+		}
+
+		@Test
+		@Order(1)
+		@DisplayName("Does Not Throw Test")
+		public void updateAccountExpiredByEmailMethodDoesNotThrowTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//then
+				assertDoesNotThrow( () -> {
+					userInfoRepository.updateAccountExpiredByEmail("jack@jack.com", Boolean.valueOf(true));
+				});
+			} catch (NullPointerException | UserInfoAlreadyExistsException  e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(2)
+		@DisplayName("Throws Exactly NullPointerException Test")
+		public void updateAccountExpiredByEmailMethodThrowsExactlyNullPointerExceptionTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//then
+				assertThrowsExactly(NullPointerException.class, () -> {
+					userInfoRepository.updateAccountExpiredByEmail(null, null);
+				});
+			} catch (NullPointerException| UserInfoAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(3)
+		@DisplayName("Throws Exactly UserInfoNotFoundException Test")
+		public void updateAccountExpiredByEmailMethodThrowsExactlyUserInfoNotFoundExceptionTest() {
+			assertThrowsExactly(UserInfoNotFoundException.class, () -> {
+				userInfoRepository.updateAccountExpiredByEmail("jack@jack.com", Boolean.valueOf(true));
+			});
+		}
+
+		@Test
+		@Order(4)
+		@DisplayName("Not Null Test")
+		public void updateAccountExpiredByEmailMethodNotNullTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//when
+				userInfoRepository.updateAccountExpiredByEmail("jack@jack.com", Boolean.valueOf(true));
+				//then
+				UserInfo classUnderTest = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				assertNotNull(classUnderTest.isExpired());
+			} catch (NullPointerException | UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(5)
+		@DisplayName("Equals Test")
+		public void updateAccountExpiredByEmailMethodEqualsTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//when
+				userInfoRepository.updateAccountExpiredByEmail("jack@jack.com", Boolean.valueOf(true));
+				//then
+				UserInfo classUnderTest = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				assertEquals(true, classUnderTest.isExpired());
+			} catch (NullPointerException | UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Nested
+	@DisplayName("UserInfo Repository | updateAccountLockedByEmail() Method Test")
+	@TestInstance(Lifecycle.PER_CLASS)
+	public class UpdateAccountLockedByEmailMethodTest {
+
+		@BeforeAll
+		public void setup() {
+			userRepository.deleteAll();
+			userInfoRepository.deleteAll();
+			userRepository.save(new User("jack", "jack@jack.com", "123456"));
+		}
+
+		@BeforeEach
+		public void init() {
+			userInfoRepository.deleteAll();
+		}
+
+		@Test
+		@Order(1)
+		@DisplayName("Does Not Throw Test")
+		public void updateAccountLockedByEmailMethodDoesNotThrowTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//then
+				assertDoesNotThrow(() -> {
+					userInfoRepository.updateAccountLockedByEmail("jack@jack.com", Boolean.valueOf(true));
+				});
+			} catch (NullPointerException | UserInfoAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(2)
+		@DisplayName("Throws Exactly NullPointerException Test")
+		public void updateAccountLockedByEmailMethodThrowsExactlyNullPointerExceptionTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//then
+				assertThrowsExactly(NullPointerException.class, () -> {
+					userInfoRepository.updateAccountLockedByEmail(null, null);
+				});
+			} catch (NullPointerException | UserInfoAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(3)
+		@DisplayName("Throws Exactly UserInfoNotFoundException Test")
+		public void updateAccountLockedByEmailMethodThrowsExactlyUserInfoNotFoundExceptionTest() {
+			assertThrowsExactly(UserInfoNotFoundException.class, () -> {
+				userInfoRepository.updateAccountLockedByEmail("jack@jack.com", Boolean.valueOf(true));
+			});
+		}
+
+		@Test
+		@Order(4)
+		@DisplayName("Not Null Test")
+		public void updateAccountLockedByEmailMethodNotNullTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//whem
+				userInfoRepository.updateAccountLockedByEmail("jack@jack.com", Boolean.valueOf(true));
+				//then
+				UserInfo classUnderTest = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				assertNotNull(classUnderTest.isLocked());
+			} catch (NullPointerException | UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(5)
+		@DisplayName("Equals Test")
+		public void updateAccountLockedByEmailMethodEqualsTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//whem
+				userInfoRepository.updateAccountLockedByEmail("jack@jack.com", Boolean.valueOf(true));
+				//then
+				UserInfo classUnderTest = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				assertEquals(true, classUnderTest.isLocked());
+			} catch (NullPointerException | UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Nested
+	@DisplayName("UserInfo Repository | updateCredentialsExpiredByEmail() Method Test")
+	@TestInstance(Lifecycle.PER_CLASS)
+	public class UpdateCredentialsExpiredByEmailMethodTest {
+
+		@BeforeAll
+		public void setup() {
+			userRepository.deleteAll();
+			userInfoRepository.deleteAll();
+			userRepository.save(new User("jack", "jack@jack.com", "123456"));
+		}
+
+		@BeforeEach
+		public void init() {
+			userInfoRepository.deleteAll();
+		}
+
+		@Test
+		@Order(1)
+		@DisplayName("Does Not Throw Test")
+		public void updateCredentialsExpiredByEmailMethodDoesNotThrowTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//then
+				assertDoesNotThrow( () -> {
+					userInfoRepository.updateCredentialsExpiredByEmail("jack@jack.com", Boolean.valueOf(true));
+				});
+			} catch (NullPointerException | UserInfoAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(2)
+		@DisplayName("Throws Exactly NullPointerException Test")
+		public void updateCredentialsExpiredByEmailMethodThrowsExactlyNullPointerExceptionTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//then
+				assertThrowsExactly(NullPointerException.class, () -> {
+					userInfoRepository.updateCredentialsExpiredByEmail(null, null);
+				});
+			} catch (NullPointerException | UserInfoAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(3)
+		@DisplayName("Throws Exactly UserInfoNotFoundException Test")
+		public void updateCredentialsExpiredByEmailMethodThrowsExactlyUserInfoNotFoundExceptionTest() {
+			assertThrowsExactly(UserInfoNotFoundException.class, () -> {
+				userInfoRepository.updateCredentialsExpiredByEmail("jack@jack.com", Boolean.valueOf(true));
+			});
+		}
+
+		@Test
+		@Order(4)
+		@DisplayName("Not Null Test")
+		public void updateCredentialsExpiredByEmailMethodNotNullTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//when
+				userInfoRepository.updateCredentialsExpiredByEmail("jack@jack.com", Boolean.valueOf(true));
+				//then
+				UserInfo classUnderTest = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				assertNotNull(classUnderTest.isCredentialsExpired());
+			} catch (NullPointerException | UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(5)
+		@DisplayName("Equals Test")
+		public void updateCredentialsExpiredByEmailMethodEqualsTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//when
+				userInfoRepository.updateCredentialsExpiredByEmail("jack@jack.com", Boolean.valueOf(true));
+				//given
+				UserInfo classUnderTest = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				assertEquals(true, classUnderTest.isCredentialsExpired());
+			} catch (NullPointerException | UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Nested
+	@DisplayName("UserInfo Repository | updateAccountEnabledByEmail() Method Test")
+	@TestInstance(Lifecycle.PER_CLASS)
+	public class UpdateAccountEnabledByEmailMethodTest {
+
+		@BeforeAll
+		public void setup() {
+			userRepository.deleteAll();
+			userInfoRepository.deleteAll();
+			userRepository.save(new User("jack", "jack@jack.com", "123456"));
+		}
+
+		@BeforeEach
+		public void init() {
+			userInfoRepository.deleteAll();
+		}
+
+		@Test
+		@Order(1)
+		@DisplayName("Does Not Throw Test")
+		public void updateAccountEnabledByEmailMethodDoesNotThrowTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//then
+				assertDoesNotThrow( () -> {
+					userInfoRepository.updateAccountEnabledByEmail("jack@jack.com", Boolean.valueOf(false));
+				});
+			} catch (NullPointerException | UserInfoAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(2)
+		@DisplayName("Throws Exactly NullPointerExcpetion Test")
+		public void updateAccountEnabledByEmailMethodThrowsExactlyNullPointerExceptionTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//then
+				assertThrowsExactly(NullPointerException.class, () -> {
+					userInfoRepository.updateAccountEnabledByEmail(null, null);
+				});
+			} catch (NullPointerException | UserInfoAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(3)
+		@DisplayName("Throws Exactly UserInfoNotFoundException Test")
+		public void updateAccountEnabledByEmailMethodThrowsExactlyUserInfoNotFoundExceptionTest() {
+			assertThrowsExactly(UserInfoNotFoundException.class, () -> {
+				userInfoRepository.updateAccountEnabledByEmail("jack@jack.com", Boolean.valueOf(false));
+			});
+		}
+
+		@Test
+		@Order(4)
+		@DisplayName("Not Null Test")
+		public void updateAccountEnabledByEmailMethodNotNullTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//when
+				userInfoRepository.updateAccountExpiredByEmail("jack@jack.com", Boolean.valueOf(false));
+				UserInfo classUnderTest = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				assertNotNull(classUnderTest.isEnabled());
+			} catch (NullPointerException | UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(5)
+		@DisplayName("Equals Test")
+		public void updateAccountEnabledByEmailMethodEqualsTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//when
+				userInfoRepository.updateAccountEnabledByEmail("jack@jack.com", Boolean.valueOf(false));
+				//then
+				UserInfo classUnderTest = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				assertEquals(false, classUnderTest.isEnabled());
+			} catch (NullPointerException | UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Nested
+	@DisplayName("UserInfo Repository | removeUserInfoByEmail() Method Test")
+	@TestInstance(Lifecycle.PER_CLASS)
+	public class removeUserInfoByEmailMethodTest {
+
+		@BeforeAll
+		public void setup() {
+			userRepository.deleteAll();
+			userInfoRepository.deleteAll();
+			userRepository.save(new User("jack", "jack@jack.com", "123456"));
+		}
+
+		@BeforeEach
+		public void init() {
+			userInfoRepository.deleteAll();
+		}
+
+		@Test
+		@Order(1)
+		@DisplayName("Does Not Throw Test")
+		public void removeUserInfoByEmailMethodDoesNotThrowTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//then
+				assertDoesNotThrow( () -> {
+					userInfoRepository.removeUserInfoByEmail("jack@jack.com");
+				});
+			} catch (NullPointerException | UserInfoAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(2)
+		@DisplayName("Throws Exactly NullPointerException Test")
+		public void removeUserInfoByEmailMethodThrowsExactlyNullPointerExceptionTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//then
+				assertThrowsExactly(NullPointerException.class, () -> {
+					userInfoRepository.removeUserInfoByEmail(null);
+				});
+			} catch (NullPointerException | UserInfoAlreadyExistsException e) {
+				e.printStackTrace();
+			}
+		}
+
+		@Test
+		@Order(3)
+		@DisplayName("Throws Exactly UserInfoNotFoundException Test")
+		public void removeUserInfoByEmailMethodThrowsExactlyUserInfoNotFoundExceptionTest() {
+			assertThrowsExactly(UserInfoNotFoundException.class, () -> {
+				userInfoRepository.removeUserInfoByEmail("jack@jack.com");
+			});
+		}
+
+		@Test
+		@Order(4)
+		@DisplayName("UserInfo Removed Confirmation Test")
+		public void removeUserInfoByEmailMethodTest() {
+			try {
+				//given
+				userInfoRepository.addNewUserInfo(new UserInfo("jack@jack.com"));
+				//when
+				userInfoRepository.removeUserInfoByEmail("jack@jack.com");
+				//them
+				assertThrowsExactly(UserInfoNotFoundException.class, () -> {
+					UserInfo userInfo = userInfoRepository.getUserInfoByEmail("jack@jack.com");
+				});
+			} catch (NullPointerException | UserInfoAlreadyExistsException | UserInfoNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
