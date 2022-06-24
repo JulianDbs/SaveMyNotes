@@ -35,4 +35,56 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long>, Custo
 		return result.get();
 	}
 
+	@Override
+	public default void updateNoteCountByEmail(final String email, final Long note_count) throws NullPointerException, UserInfoNotFoundException {
+                if (email == null || note_count == null)
+                        throw new NullPointerException();
+                UserInfo userInfo = this.getUserInfoByEmail(email);
+                userInfo.setNoteCount(note_count);
+                this.saveAndFlush(userInfo);
+        }
+
+	@Override
+	public default void updateAccountExpiredByEmail(final String email, final Boolean account_expired) throws NullPointerException, UserInfoNotFoundException {
+		if (email == null || account_expired == null)
+			throw new NullPointerException();
+		UserInfo userInfo = this.getUserInfoByEmail(email);
+		userInfo.setAccountExpired(account_expired);
+		this.saveAndFlush(userInfo);
+	}
+
+	@Override
+	public default void updateAccountLockedByEmail(final String email, final Boolean account_locked) throws NullPointerException, UserInfoNotFoundException {
+		if (email == null || account_locked == null)
+			throw new NullPointerException();
+		UserInfo userInfo = this.getUserInfoByEmail(email);
+		userInfo.setAccountLocked(account_locked);
+		this.saveAndFlush(userInfo);
+	}
+
+	@Override
+	public default void updateCredentialsExpiredByEmail(final String email, final Boolean credentials_expired) throws NullPointerException, UserInfoNotFoundException {
+		if (email == null || credentials_expired == null)
+			throw new NullPointerException();
+		UserInfo userInfo = this.getUserInfoByEmail(email);
+		userInfo.setCredentialsExpired(credentials_expired);
+		this.saveAndFlush(userInfo);
+	}
+
+	@Override
+	public default void updateAccountEnabledByEmail(final String email, final Boolean account_enabled) throws NullPointerException, UserInfoNotFoundException {
+		if (email == null || account_enabled == null)
+			throw new NullPointerException();
+		UserInfo userInfo = this.getUserInfoByEmail(email);
+		userInfo.setAccountEnabled(account_enabled);
+		this.saveAndFlush(userInfo);
+	}
+
+	public default void removeUserInfoByEmail(final String email) throws NullPointerException, UserInfoNotFoundException {
+		if (email == null)
+			throw new NullPointerException();
+		UserInfo userInfo = this.getUserInfoByEmail(email);
+		this.deleteUserInfoByEmail(email);
+		this.flush();
+	}
 }
