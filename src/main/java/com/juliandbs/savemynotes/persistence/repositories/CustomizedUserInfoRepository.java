@@ -2,6 +2,7 @@ package com.juliandbs.savemynotes.persistence.repositories;
 
 import com.juliandbs.savemynotes.persistence.models.UserInfo;
 import com.juliandbs.savemynotes.persistence.exceptions.UserInfoAlreadyExistsException;
+import com.juliandbs.savemynotes.persistence.exceptions.UserInfoNotFoundException;
 
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.jpa.repository.Query;
@@ -24,23 +25,15 @@ public interface CustomizedUserInfoRepository {
 	public Optional<UserInfo> findUserInfoByEmail(@Param("email") String email);
 
 	//update
-	@Query(nativeQuery = true, value = "UPDATE user_info SET (user_info.creation_date=:creation_date) WHERE user_info.email=:email")
-	public void updateCreationDateByEmail(@Param("email") String email, @Param("creation_date") LocalDate creation_date);
+	public void updateNoteCountByEmail(final String email, final Long note_count) throws NullPointerException, UserInfoNotFoundException;
 
-	@Query(nativeQuery = true, value = "UPDATE user_info SET (user_info.note_count=:note_count) WHERE user_info.email=:email")
-	public void updateNoteCountByEmail(@Param("email") String email, @Param("note_count") Long note_count);
+	public void updateAccountExpiredByEmail(final String email, final Boolean account_expired) throws NullPointerException, UserInfoNotFoundException;
 
-	@Query(nativeQuery = true, value = "UPDATE user_info SET (user_info.account_expired=:account_expired) WHERE user_info.email=:email")
-	public void updateAccountExpired(@Param("email") String email, @Param("account_expired") boolean account_expired);
+	public void updateAccountLockedByEmail(final String email, final Boolean account_locked) throws NullPointerException, UserInfoNotFoundException;
 
-	@Query(nativeQuery = true, value = "UPDATE user_info SET (user_info.account_locked=:account_locked) WHERE user_info.email=:email")
-	public void updateAccountLocked(@Param("email") String email, @Param("account_locked") boolean account_locked);
+	public void updateCredentialsExpiredByEmail(final String email, final Boolean credentials_expired) throws NullPointerException, UserInfoNotFoundException;
 
-	@Query(nativeQuery = true, value = "UPDATE user_info SET (user_info.credentials_exired=:credentials_expired) WHERE user_info.email=:email")
-	public void updateCredentialsExpired(@Param("email") String email, @Param("credentials_expired") boolean credentials_expired);
-
-	@Query(nativeQuery = true, value = "UPDATE user_info SET (user_info.account_enabled=:account_enabled) WHERE user_info.email=:email")
-	public void updateAccountEnabled(@Param("email") String email, @Param("account_enabled") boolean account_enabled);
+	public void updateAccountEnabledByEmail(final String email, final Boolean account_enabled) throws NullPointerException, UserInfoNotFoundException;
 
 	//delete
 	@Modifying(clearAutomatically = true, flushAutomatically = true)
