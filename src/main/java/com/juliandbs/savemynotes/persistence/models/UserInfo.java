@@ -95,12 +95,22 @@ public class UserInfo {
 
 	public Long getNoteCount() {return note_count;}
 
+	public void setNoteCount(Long note_count) {this.note_count = note_count;}
+
 	public boolean isExpired() {return account_expired.booleanValue();}
+
+	public void setAccountExpired(Boolean account_expired) {this.account_expired = account_expired;}
 
 	public boolean isLocked() {return account_locked.booleanValue();}
 
+	public void setAccountLocked(Boolean account_locked) {this.account_locked = account_locked;}
+
 	public boolean isCredentialsExpired() {return credentials_expired.booleanValue();}
 
+	public void setCredentialsExpired(Boolean credentials_expired) {this.credentials_expired = credentials_expired;}
+
 	public boolean isEnabled() {return account_enabled.booleanValue();}
+
+	public void setAccountEnabled(Boolean account_enabled) {this.account_enabled = account_enabled;}
 
 }
