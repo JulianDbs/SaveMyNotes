@@ -6,26 +6,27 @@
                 <link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
-		<main class="login-container">
-			<h1 class="login-title">Login</h1>
-
-			<div th:if="${param.error}" class="login-error">
-				Invalid username and password
-			</div>
+		<nav th:replace="fragments/navbar :: home-nav"></nav>
+		<main class="login-main">
 			<form th:action="@{/login}" method="post" class="login-form">
-				<div class="login-div">
-					<label th:text="${'Email : '}" class="login-label"></label> 
-					<input type="type" name="email" class="login-input"/>
+				<h1 class="login-form__title">Login</h1>
+				<div th:if="${param.error}" class="login-error">
+					Invalid username and password
 				</div>
-				<div class="login-div">
-					<label th:text="${'Password : '}" class="login-label"></label> 
-					<input type="password" name="password" class="login-input"/>
+				<div class="login-form__div">
+					<label th:text="${'Email: '}" class="login-form__label"></label> 
+					<input type="type" name="email" class="login-form__input"/>
 				</div>
-				<div class="login-button-container">
-					<button type="submit"  th:text="${'Login'}" class="login-button"></button>
-					<a th:href="@{/registration}" th:text="${'Sign-Up'}" class="login-link"></a>
+				<div class="login-form__div">
+					<label th:text="${'Password: '}" class="login-form__label"></label> 
+					<input type="password" name="password" class="login-form__input"/>
+				</div>
+				<div class="login-form__button-container">
+					<a th:href="@{/home}" class="login-form__href">Go Back</a>
+					<button type="submit"  th:text="${'Login'}" class="login-form__button"></button>
 				</div>
 			</form>
 		</main>
+		 <footer th:replace="fragments/footer :: footer-bar__fixed"></footer>
 	</body>
 </html>
