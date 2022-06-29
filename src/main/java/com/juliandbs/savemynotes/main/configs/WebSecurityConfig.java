@@ -42,16 +42,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(final HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/styles/style.css", "/registration").permitAll()
+				.antMatchers("/styles/style.css", "/registration", "/" ,"/home").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login")
+				.defaultSuccessUrl("/desktop")
 				.permitAll()
 				.usernameParameter("email")
 				.and()
 			.logout()
-				//.logoutUrl("/logout")
+				.logoutSuccessUrl("/")
 				.permitAll();
 	}
 }
