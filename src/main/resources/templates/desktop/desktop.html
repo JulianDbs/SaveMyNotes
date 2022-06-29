@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+		<title>Desktop</title>
+	</head>
+	<body>
+		<header class="header">
+			<h1 class="header__title">Desktop</h1>
+		</header>
+		<nav th:replace="fragments/navbar :: desktop-nav"></nav>
+		<main class="desktop-main">
+			<section class="desktop-grid__notes">
+				<a th:replace="fragments/note :: new-note"></a>
+				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume"></article>
+			</section>
+		</main>
+		<footer th:replace="fragments/footer :: footer-bar"></footer>
+	</body>
+</html>
