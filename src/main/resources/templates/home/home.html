@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
 		<title>Home</title>
-		
 	</head>
 	<body>
-		<main class="main-container">
-			<h1 class="main-title">Welcome</h1>
+		<nav th:replace="fragments/navbar :: home-nav"></nav>
+		<main class="home-main">
+			<div class="home-main__div">
+				<h1 class="home-main__h1">SaveMyNotes</h1>
+				<p class="home-main__p">Sign-Out and start to save your notes</p>
+			</div>
 		</main>
+		<footer th:replace="fragments/footer :: footer-bar__fixed"></footer>
 	</body>
 </html>
