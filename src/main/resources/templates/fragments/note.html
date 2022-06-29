@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+
+		<a th:fragment="new-note" class="grid-item__new-note" th:href="@{/}">+ New Note</a>
+
+		<article th:fragment="note-resume" class="grid-item__note-resume">
+			<label class="grid-item__note-resume-title">Title Example</label>
+			<label class="grid-item__note-resume-content">Content Example</label>
+			<label class="grid-item__note-resume-content">Content Example</label>
+			<label class="grid-item__note-resume-content">Content Example</label>
+			<label class="grid-item__note-resume-content">Content Example</label>
+			<label class="grid-item__note-resume-content">Content Example</label>
+			<label class="grid-item__note-resume-content">Content Example</label>
+			<a class="grid-item__note-resume-button" th:href="@{/}">Open</a>
+		</article>
+	</body>
+</html>

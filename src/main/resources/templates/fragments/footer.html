@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body>
+		<footer th:fragment="footer-bar" class="footer-bar">
+			<div class="footer-bar__sitemap">
+				<label class="footer-bar__label">SiteMap:</label>
+				<a th:href="@{/}" class="footer-bar__href">Home</a>
+				<a th:href="@{/}" class="footer-bar__href">About</a>
+			</div>
+			<div class="footer-bar__sitemap">
+				<a th:href="@{/}" class="footer-bar__href">Sign-In</a>
+				<a th:href="@{/}" class="footer-bar__href">Sign-Out</a>
+			</div>
+			<div class="footer-bar__author">
+				<label class="footer-bar__label">Contact:</label>
+				<label class="footer-bar__label-author">Author: JulianDbs</label>
+				<a th:href="@{/}" class="footer-bar__href">@JulianDbs</a>
+			</div>
+		</footer>
+
+		<footer th:fragment="footer-bar__fixed" class="footer-bar__fixed">
+			<div class="footer-bar__sitemap">
+				<label class="footer-bar__label">SiteMap:</label>
+				<a th:href="@{/}" class="footer-bar__href">Home</a>
+				<a th:href="@{/}" class="footer-bar__href">About</a>
+			</div>
+			<div class="footer-bar__sitemap">
+				<a th:href="@{/}" class="footer-bar__href">Sign-In</a>
+				<a th:href="@{/}" class="footer-bar__href">Sign-Out</a>
+			</div>
+			<div class="footer-bar__author">
+				<label class="footer-bar__label">Contact:</label>
+				<label class="footer-bar__label-author">Author: JulianDbs</label>
+				<a th:href="@{/}" class="footer-bar__href">@JulianDbs</a>
+			</div>
+		</footer>
+	</body>
+</html>
