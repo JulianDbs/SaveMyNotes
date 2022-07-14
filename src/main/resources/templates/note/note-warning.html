@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+		<title>Error</title>
+	</head>
+	<body>
+		<header class="header">
+			<h1 class="header__title">Error</h1>
+		</header>
+		<nav th:replace="fragments/navbar :: desktop-nav"></nav>
+		<main class="desktop-main">
+			<h1>The Note Already Exists</h1>
+		</main>
+		<footer th:replace="fragments/footer :: footer-bar"></footer>
+	<body>
+</html>
