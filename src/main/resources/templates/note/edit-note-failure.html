@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+		<title>Failure</title>
+	</head>
+	<body>
+		<header class="header">
+                        <h1 class="header__title">Failure</h1>
+                </header>
+		<nav th:replace="fragments/navbar :: desktop-nav"></nav>
+		<main class="edit-note-failure-main">
+			<div class="edit-note-failure-main__div-message-panel">
+				<p th:text="${'A failure occurr traing to edit the note'}" class="edit-note-failure-main__p-message">
+				<p th:text="${'Please press Continue and try again'}" class="edit-note-failure-main__p-message">
+				<a th:href="@{/desktop}" class="edit-note-failure-main__a-button">Continue</a>
+			</div>
+		</main>
+		<footer th:replace="fragments/footer :: footer-bar"></footer>
+	</body>
+</html>
