@@ -4,26 +4,35 @@
 	<body>
 		<nav th:fragment="home-nav" class="home-nav" id="home-nav">
 			<ul class="home-nav__ul">
+				<p class="home-nav__p-pad"></p>
 				<hr class="home-nav__separator">
-				<a class="home-nav__href" th:href="@{/registration}">Sign-Out</a>
+				<a class="home-nav__href" th:href="@{/home}">Home</a>
 				<hr class="home-nav__separator">
-				<a class="home-nav__href" th:href="@{/login}">Sign-In</a>
-				<hr class="home-nav__separator">
+				<p class="home-nav__p-middle-pad"></p>
+				<hr class="home-nav__separator home-nav__to-right">
+				<a class="home-nav__href home-nav__to-right" th:href="@{/login}">Sign-In</a>
+				<hr class="home-nav__separator home-nav__to-right">
+				<a class="home-nav__href home-nav__to-right" th:href="@{/registration}">Sign-Up</a>
+				<hr class="home-nav__separator home-nav__to-right">
+				<p class="home-nav__p-pad home-nav__to-right"></p>
 			</ul>
 		</nav>
 
 		<nav th:fragment="desktop-nav" class="desktop-nav">
 			<ul class="desktop-nav__ul">
+				<p class="desktop-nav__p-pad"></p>
 				<hr class="desktop-nav__separator">
 				<a class="desktop-nav__href" th:href="@{/desktop}">Desktop</a>
 				<hr class="desktop-nav__separator">
 				<a class="desktop-nav__href" th:href="@{/}">Profile</a>
 				<hr class="desktop-nav__separator">
+				<p class="desktop-nav__p-middle-pad"></p>
 				<hr class="desktop-nav__separator desktop-nav__to-right">
 				<form th:action="@{/logout}" method="post" class="desktop-nav__form desktop-nav__to-right">
 					<button class="desktop-nav__button" type="submit">Logout</button>
 				</form>
 				<hr class="desktop-nav__separator desktop-nav__to-right">
+				<p class="desktop-nav__p-pad desktop-nav__to-right"></p>
 			</ul>
 		</nav>
 	</body>
