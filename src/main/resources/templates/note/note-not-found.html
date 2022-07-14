@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+		<title>Note Not Found</title>
+	</head>
+	<body>
+		<header class="header">
+                        <h1 class="header__title">Not Found</h1>
+                </header>
+		<nav th:replace="fragments/navbar :: desktop-nav"></nav>
+		<main class="note-not-found-main">
+			<div class="note-not-found-main__div-message-panel">
+				<p th:text="${'Note Not Found'}" class="note-note-found-main__p-message">
+				<a th:href="@{/desktop}" class="note-not-found-main__a-button">Continue</a>
+			</div>
+		</main>
+		<footer th:replace="fragments/footer :: footer-bar"></footer>
+	</body>
+</html>
