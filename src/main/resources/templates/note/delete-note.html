@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+		<title>Delete Note</title>
+	</head>
+	<body>
+		<header class="header">
+                        <h1 class="header__title">Delete Note</h1>
+                </header>
+		<nav th:replace="fragments/navbar :: desktop-nav"></nav>
+		<main class="delete-note-main">
+			<form th:action="@{/delete-note(id = ${note.id})}" method="post" class="delete-note-main__form">
+				<label class="delete-note-main-form__label">Are your sure you want to delete this Note ?</label>
+				<div class="delete-note-main-form__div-button-panel">
+					<a th:href="@{/desktop}" class="delete-note-main-form__a-button">Cancel</a>
+					<input class="delete-note-main-form__input" type="submit" value="Yes"></input>	
+				</div>
+			</form>
+			<article class="delete-note-article">
+                                <label th:text="${note.title}" class="delete-note-article__label-title"></label>
+                                <div class="delete-note-article__div-content">
+					<textarea class="delete-note-article__textarea-content" th:field="*{note.content}" th:rows="${note.lineCount}" cols="16" style="resize:none;" readonly></textarea>
+                                </div>
+                        </article>
+		</main>
+		<footer th:replace="fragments/footer :: footer-bar"></footer>
+	</body>
+</html>
