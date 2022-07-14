@@ -6,31 +6,34 @@
 		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
+		<header class="header">
+                        <h1 class="header__title">Sign-Up</h1>
+                </header>
 		<nav th:replace="fragments/navbar :: home-nav"></nav>
 		<main class="registration-main">
 			<form th:action="@{/registration}" th:object="${user}" method="POST"  class="registration-form">
 				<h1 th:text="${'Registration'}" class="registration-form__title"></h1>
 				<div class="registration-form__div-user-email">
 					<div class="registration-form__div">
-						<label th:text="${'Username: '}" class="registration-form__label"></label>
-						<input type="text" th:field="*{username}" class="registration-form__input"/>
+						<label th:text="${'Username'}" class="registration-form__label"></label>
+						<input type="text" th:field="*{username}" class="registration-form__input" placeholder="Your Name here"/>
 						<p th:each="error : ${usernameErrors}" th:text="${error}" class="registration-form__error-message">ValidationError</p>
 					</div>
 					<div class="registration-form__div">
-						<label th:text="${'Email: '}" class="registration-form__label"></label>
-						<input type="text" th:field="*{email}" name="email" value="" class="registration-form__input"/>
+						<label th:text="${'Email'}" class="registration-form__label"></label>
+						<input type="text" th:field="*{email}" name="email" value="" class="registration-form__input" placeholder="Your Email here"/>
 						<p th:each="error : ${emailErrors}" th:text="${error}" class="registration-form__error-message">ValidationError</p>
 					</div>
 				</div>
 				<div class="registration-form__div-password">
 					<div class="registration-form__div">
-						<label th:text="${'Password: '}" class="registration-form__label"></label>
-						<input type="password" th:field="*{password}" class="registration-form__input"/>
+						<label th:text="${'Password'}" class="registration-form__label"></label>
+						<input type="password" th:field="*{password}" class="registration-form__input" placeholder="Your Password here"/>
 						<p th:each="error : ${passwordErrors}" th:text="${error}" class="registration-form__error-message">Validation Error</p>
 					</div>
 					<div class="registration-form__div">
-						<label th:text="${'Confirm Password: '}" class="registration-form__label"></label>
-						<input type="password" th:field="*{matchingPassword}" class="registration-form__input"/>
+						<label th:text="${'Confirm Password'}" class="registration-form__label"></label>
+						<input type="password" th:field="*{matchingPassword}" class="registration-form__input" placeholder="Your Password here"/>
 						<p th:each="error : ${matchingPasswordErrors}" th:text="${error}" class="registration-form__error-message">Validation Error</p>
 					</div>
 				</div>
@@ -40,6 +43,6 @@
 				</div>
 			</form>
 		</main>
-		<footer th:replace="fragments/footer :: footer-bar__fixed"></footer>
+		<footer th:replace="fragments/footer :: footer-bar"></footer>
 	</body>
 </html>
