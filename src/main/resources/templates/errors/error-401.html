@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Error 401</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+		<title>Unauthorized Access</title>
 	</haed>
 	<body>
-		<main>
-			<h1>Error 401</h1>
+		<header class="header">
+			<h1 class="header__title">Error 401</h1>
+		</header>
+		<nav th:replace="fragments/navbar :: desktop-nav"></nav>
+		<main class="error-main">
+			<div class="error-main__div-panel">
+				<h1 class="error-main-div-panel__h1-title">Unauthorized Access</h1>
+				<p class="error-main-div-panel__p">message here</p>
+				<a class="error-main-div-panel__a-button" th:href="@{/desktop}">Continue</a>
+			</div>
 		</main>
+		<footer th:replace="fragments/footer :: footer-bar"></footer>
 	</body>
 </html>
