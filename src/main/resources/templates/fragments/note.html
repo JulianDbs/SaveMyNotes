@@ -3,17 +3,12 @@
 	<head></head>
 	<body>
 
-		<a th:fragment="new-note" class="grid-item__new-note" th:href="@{/}">+ New Note</a>
+		<a th:fragment="new-note" class="grid-item__new-note" th:href="@{/new-note}">+ New Note</a>
 
-		<article th:fragment="note-resume" class="grid-item__note-resume">
-			<label class="grid-item__note-resume-title">Title Example</label>
-			<label class="grid-item__note-resume-content">Content Example</label>
-			<label class="grid-item__note-resume-content">Content Example</label>
-			<label class="grid-item__note-resume-content">Content Example</label>
-			<label class="grid-item__note-resume-content">Content Example</label>
-			<label class="grid-item__note-resume-content">Content Example</label>
-			<label class="grid-item__note-resume-content">Content Example</label>
-			<a class="grid-item__note-resume-button" th:href="@{/}">Open</a>
+		<article th:fragment="note-resume(noteList)" th:each="note : ${noteList}" class="grid-item__note-resume">
+			<label th:text="${note.title}" class="grid-item__note-resume-title"></label>
+			<label th:each="e : ${note.content}" th:text="${e}" class="grid-item__note-resume-content"></label>
+			<a class="grid-item__note-resume-button" th:href="@{/note(id=${note.id})}">Open</a>
 		</article>
 	</body>
 </html>
