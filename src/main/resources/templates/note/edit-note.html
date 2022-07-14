@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+		<title>Edit Note</title>
+	</head>
+	<body>
+		<header class="header">
+                        <h1 class="header__title">Edit Note</h1>
+                </header>
+		<nav th:replace="fragments/navbar :: desktop-nav"></nav>
+		<main class="edit-note-main">
+			<p th:each="error : ${titleErrors}" th:text="${error}" class="edit-note-main__p-error-message">
+			<p th:each="error : ${contentErrors}" th:text="${error}" class="edit-note-main__p-error-message">
+			<form th:action="@{/edit-note}" th:object="${note}" method="post" class="edit-note-form">
+				<input type="hidden" th:field="*{id}" id="id" style="display: none;"></input>
+				<div class="edit-note-form__div-content">
+					<input th:field="*{title}" class="edit-note-form__input-title" maxlength="30"></input>
+					<textarea th:field="*{content}" id="edit-note-form__textarea-content" class="edit-note-form__textarea-content" th:rows="1" cols="16" style="resize:none;"></textarea>
+				</div>
+				<div class="edit-note-form__div-button-panel">
+					<a th:href="@{/desktop}" class="edit-note-form__a-button">Cancel</a>
+					<input class="edit-note-form__input" type="submit" value="Save"></input>
+				</div>
+				<script>
+					window.onload = function(event) {
+						let textarea = document.getElementById("edit-note-form__textarea-content");
+						function autoHeight(e) {
+								e.preventDefault();
+								e.stopPropagation();
+								textarea.style.height = "auto";
+								textarea.style.height = textarea.scrollHeight + "px";
+								textarea.scrollTop = textarea.scrollHeight;
+								return false;
+						};
+						textarea.addEventListener("input", autoHeight, {passive: false});
+						autoHeight(event);
+					};
+				</script>
+			</form>
+		</main>
+		<footer th:replace="fragments/footer :: footer-bar"></footer>
+	</body>
+</html>
