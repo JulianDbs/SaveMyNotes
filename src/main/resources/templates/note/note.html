@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+		<title>Note</title>
+	</head>
+	<body>
+		<header class="header">
+                        <h1 class="header__title">Note</h1>
+                </header>
+		<nav th:replace="fragments/navbar :: desktop-nav"></nav>
+		<main class="note-main">
+			<article class="note-article">
+				<label th:text="${note.title}" class="note-article__label-title"></label>
+				<div class="note-article__div-content">
+					<textarea class="note-article__textarea-content" th:field="*{note.content}" th:rows="${note.lineCount}" cols="16" style="resize:none;" readonly></textarea>
+				</div>
+			</article>
+			<div class="note-article__div-button-panel">
+				<a th:href="@{/desktop}" class="note-article__a-button">Go Back</a>
+				<a th:href="@{/edit-note(id = ${note.id})}" class="note-article__a-button">Edit</a>
+				<a th:href="@{/delete-note(id = ${note.id})}" class="note-article__a-button">Delete</a>
+			</div>
+		</main>
+		<footer th:replace="fragments/footer :: footer-bar"></footer>
+	</body>
+</html>
