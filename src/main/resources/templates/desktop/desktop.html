@@ -13,17 +13,7 @@
 		<main class="desktop-main">
 			<section class="desktop-grid__notes">
 				<a th:replace="fragments/note :: new-note"></a>
-				<article th:replace="fragments/note :: note-resume"></article>
-				<article th:replace="fragments/note :: note-resume"></article>
-				<article th:replace="fragments/note :: note-resume"></article>
-				<article th:replace="fragments/note :: note-resume"></article>
-				<article th:replace="fragments/note :: note-resume"></article>
-				<article th:replace="fragments/note :: note-resume"></article>
-				<article th:replace="fragments/note :: note-resume"></article>
-				<article th:replace="fragments/note :: note-resume"></article>
-				<article th:replace="fragments/note :: note-resume"></article>
-				<article th:replace="fragments/note :: note-resume"></article>
-				<article th:replace="fragments/note :: note-resume"></article>
+				<article th:replace="fragments/note :: note-resume(${noteList})"></article>
 			</section>
 		</main>
 		<footer th:replace="fragments/footer :: footer-bar"></footer>
