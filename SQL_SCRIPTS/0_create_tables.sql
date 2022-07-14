@@ -19,3 +19,16 @@ create table user_info(
 		foreign key (email)
 			references users(email)
 );
+
+create table notes(
+	id serial not null,
+	email varchar(40) not null,
+	creation_date DATE DEFAULT CURRENT_DATE not null,
+	last_access TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP not null,
+	code varchar(200) not null unique,
+	title varchar(30) not null,
+	content text[] not null,
+	constraint fk_email
+		foreign key (email)
+			references user_info(email)
+);
