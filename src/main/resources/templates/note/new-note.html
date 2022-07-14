@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link th:href="@{/styles/style.css}" rel="stylesheet" type="text/css"/>
+		<title>New Note</title>
+	</head>
+	<body>
+		<header class="header">
+                        <h1 class="header__title">New Note</h1>
+                </header>
+		<nav th:replace="fragments/navbar :: desktop-nav"></nav>
+		<main class="new-page-main">
+			<p th:each="error : ${titleErrors}" th:text="${error}" class="new-note-main__p-error-message">
+                        <p th:each="error : ${contentErrors}" th:text="${error}" class="new-note-main__p-error-message">
+			<form th:action="@{/new-note}" th:object="${note}" method="post" class="new-note-form">
+				<div class="new-note-form__div-background">
+					<input class="new-note-form__input-title" th:field="*{title}" maxlength="30" placeholder="Title Here"></input>
+					<div class="new-note-form__div-content">
+						<textarea class="new-note-form__textarea-content" th:field="*{content}" rows="16" cols="16" style="resize:none;" placeholder="Content Here"></textarea>
+						<div class="new-note-form__div-content-background">
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+							<p class="new-note-form__div-content-p"></p>
+						</div>
+					</div>
+				</div>
+				<div class="new-note-form__div-button-panel">
+					<a th:href="@{/desktop}" class="new-note-form__a-button">Cancel</a>
+					<input class="new-note-form__input" type="submit" value="Create"></input>
+				</div>
+			</form>
+		</main>
+		<footer th:replace="fragments/footer :: footer-bar"></footer>
+	</body>
+</html>
+
